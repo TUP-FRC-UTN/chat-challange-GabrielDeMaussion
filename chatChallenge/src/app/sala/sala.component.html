@@ -1,0 +1,27 @@
+<div class="rounded bg-light p-3">
+    <div class="row mb-3">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    Sala de chat
+                </div>
+                <ul class="list-group list-group-flush">
+                    @for (mensaje of mensajes; track mensaje) {
+                        <li class="list-group-item">
+                            <p class="mb-0"><b>{{mensaje.usuario.nombre}}:</b> {{mensaje.mensaje}}</p>
+                            <small class="text-body-secondary">{{mensaje.fecha | date:'dd/MM - HH:mm'}}</small>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        @for (user of usuarios; track user) {
+            <div class="col">
+                <app-mensaje-usuario [usuario]="user" (mensajeSalida)="onNuevoMensaje($event)"></app-mensaje-usuario>
+            </div>
+        }
+    </div>
+</div>
